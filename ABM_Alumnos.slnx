@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ABM/ABM.csproj" />
+  <Project Path="ContenedorAlumnos/ContenedorAlumnos.csproj" />
+</Solution>

@@ -32,6 +32,7 @@ namespace ABM
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             ActualizarListBox();
+            this.lstPrincipal.SelectedIndex = -1;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace ABM
 
                 alumnos.Add(al);
 
-                              
+
             }
             ActualizarListBox();
 
@@ -59,6 +60,68 @@ namespace ABM
         {
             lstPrincipal.DataSource = null;
             lstPrincipal.DataSource = alumnos;
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Alumno alModificar = lstPrincipal.SelectedItem as Alumno;
+            int index = lstPrincipal.SelectedIndex;
+
+            if (index >= 0)
+            {
+                FormAlumno formAlumno = new FormAlumno(alModificar);
+                formAlumno.ShowDialog();
+
+                if (formAlumno.DialogResult == DialogResult.OK)
+                {
+
+                    alumnos[index] = alModificar;
+
+                    ActualizarListBox();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un alumno antes de intentar modificarlo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+            //MessageBox.Show(alModificar.ToString());
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Alumno alEliminar = lstPrincipal.SelectedItem as Alumno;
+            int index = lstPrincipal.SelectedIndex;
+
+            if (index >= 0)
+            {
+                FormAlumno formEliminar = new FormAlumno(alEliminar, true);
+                formEliminar.ShowDialog();
+
+                //DialogResult result = MessageBox.Show($"Esta seguro de elimar a: \n{alEliminar}", "Eliminar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (formEliminar.DialogResult == DialogResult.OK)
+                {
+
+                    //alumnos.Remove(alEliminar);
+                    alumnos.RemoveAt(index);    
+
+                    ActualizarListBox();
+
+                    MessageBox.Show("Eliminacion exitosa");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminacion cancelada");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un alumno antes de intentar elimnarlo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

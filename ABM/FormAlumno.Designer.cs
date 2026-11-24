@@ -113,6 +113,7 @@
             btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAceptar
             // 
@@ -141,6 +142,7 @@
             Controls.Add(lblId);
             Name = "FormAlumno";
             Text = "FormAlumno";
+            Load += FormAlumno_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -2,7 +2,7 @@
 {
     public class Alumno
     {
-        private static int generarID = 0;
+        private static int generarID = 300;
         private int id;
         private string nombre;
         private string apellido;
